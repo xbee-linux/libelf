@@ -1,0 +1,35 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+  Libelf is a library for handling ELF (Executable and Linkable Format) files.
+  Installed Library:
+    libelf.so (symlink) and libelf-0.188.so
+  Installed Directory:
+    /usr/include/elfutils
+  Short Descriptions
+  libelf: Contains API functions to handle ELF object files
+
+var:
+  version: 0.188
+
+dependencies:
+  - zlib
+
+provision:
+  - url:
+      from: https://sourceware.org/ftp/elfutils/{{ .version }}/elfutils-{{ .version }}.tar.bz2
+      todir: "{{ .xbee.src }}"
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr --disable-debuginfod --enable-libdebuginfod=dummy
+        - make
+        - make -C libelf install DESTDIR={{ .xbee.out }}
+        - install -vm644 config/libelf.pc {{ .xbee.out }}/usr/lib/pkgconfig
+        - rm {{ .xbee.out }}/usr/lib/libelf.a
+      directory: "{{ .xbee.src }}/elfutils-{{ .version }}"
+
+
