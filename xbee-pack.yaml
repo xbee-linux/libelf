@@ -21,7 +21,8 @@ provision:
   - url:
       from: https://sourceware.org/ftp/elfutils/{{ .version }}/elfutils-{{ .version }}.tar.bz2
       todir: "{{ .xbee.src }}"
-
+  - folder: "{{ .xbee.out }}/usr/lib/pkgconfig"
+    
 build:
   - shell:
       cmds:
