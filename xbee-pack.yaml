@@ -18,9 +18,7 @@ builders:
   - zlib
 
 provision:
-  - url:
-      from: https://sourceware.org/ftp/elfutils/{{ .version }}/elfutils-{{ .version }}.tar.bz2
-      todir: "{{ .xbee.src }}"
+  - url: https://sourceware.org/ftp/elfutils/{{ .version }}/elfutils-{{ .version }}.tar.bz2
   - folder: "{{ .xbee.out }}/usr/lib/pkgconfig"
 
 build:
