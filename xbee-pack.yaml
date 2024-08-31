@@ -12,13 +12,14 @@ description: |
   libelf: Contains API functions to handle ELF object files
 
 var:
-  version: 0.188
+  xbee:
+    version: 0.188
 
 builders:
   - zlib
 
 provision:
-  - url: https://sourceware.org/ftp/elfutils/{{ .version }}/elfutils-{{ .version }}.tar.bz2
+  - url: https://sourceware.org/ftp/elfutils/{{ .xbee.version }}/elfutils-{{ .xbee.version }}.tar.bz2
   - folder: "{{ .xbee.out }}/usr/lib/pkgconfig"
 
 build:
@@ -29,6 +30,6 @@ build:
         - make -C libelf install DESTDIR={{ .xbee.out }}
         - install -vm644 config/libelf.pc {{ .xbee.out }}/usr/lib/pkgconfig
         - rm {{ .xbee.out }}/usr/lib/libelf.a
-      directory: "{{ .xbee.src }}/elfutils-{{ .version }}"
+      directory: "{{ .xbee.src }}/elfutils-{{ .xbee.version }}"
 
 
