@@ -1,7 +1,5 @@
 schema-version: 1.0
 
-type: builder
-
 description: |
   Libelf is a library for handling ELF (Executable and Linkable Format) files.
   Installed Library:
@@ -15,8 +13,7 @@ var:
   xbee:
     version: 0.188
 
-builders:
-  - zlib
+builder: zlib
 
 provision:
   - url: https://sourceware.org/ftp/elfutils/{{ .xbee.version }}/elfutils-{{ .xbee.version }}.tar.bz2
